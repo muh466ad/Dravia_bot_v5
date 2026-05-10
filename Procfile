@@ -1,1 +1,1 @@
-worker: python bot.py
+worker: python dravia-v3/bot.py
