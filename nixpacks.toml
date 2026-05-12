@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["python312"]
-
-[phases.install]
-cmds = ["pip install -r dravia-v4/requirements.txt"]
-
-[start]
-cmd = "python dravia-v4/bot.py"
