@@ -1,4 +1,4 @@
-# 🦢 DRAVIA BOT v4.0 — ULTIMATE EDITION
+# 🦢 DRAVIA BOT v5.0 — ULTIMATE EDITION
 
 Complete economy system with **achievements**, **businesses**, **voting**, **auto taxes**, **bank interest**, and **advanced gambling**!
 
