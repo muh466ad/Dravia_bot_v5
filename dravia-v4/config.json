@@ -1,39 +1,42 @@
 {
-    "token":               "MTUwMjI3ODQ4MjU1Njg4Mjk3NA.GrsTzm.V1m1lHwkjD697JwvGOTLTXTf2rGmxTvYcT4r_0",
-    "guild_id":            "1502609634349813902",
-    "admin_role_id":       "1502643338132717638",
-    "judge_role_id":       "1502642989984649326",
-    "welcome_channel_id":  "PASTE_WELCOME_CHANNEL_ID_HERE",
-    "log_channel_id":      "PASTE_LOG_CHANNEL_ID_HERE",
+    "token": "MTUwMjI3ODQ4MjU1Njg4Mjk3NA.GrsTzm.V1m1lHwkjD697JwvGOTLTXTf2rGmxTvYcT4r_0",
+    "guild_id": "1502609634349813902",
+    "admin_role_id": "1502643338132717638",
+    "judge_role_id": "1502642989984649326",
+    "welcome_channel_id": "PASTE_WELCOME_CHANNEL_ID_HERE",
+    "log_channel_id": "PASTE_LOG_CHANNEL_ID_HERE",
 
-    "currency":            "Drav",
-    "currency_symbol":     "Ð",
-    "starting_balance":    100,
+    "currency": "Drav",
+    "currency_symbol": "Ð",
+    "starting_balance": 100,
 
-    "work_cooldown_mins":  60,
-    "work_min_pay":        20,
-    "work_max_pay":        50,
+    "weekly_gov_print": 2000,
 
-    "daily_min":           50,
-    "daily_max":           100,
+    "work_cooldown_mins": 60,
+    "work_min_pay": 20,
+    "work_max_pay": 50,
 
-    "bank_interest_rate":  2,
-    "tax_rate_percent":    5,
-    "tax_interval_hours":  24,
+    "daily_min": 50,
+    "daily_max": 100,
 
-    "complaint_fee":       5,
-    "judge_pay":           25,
-    "lawyer_fee":          30,
+    "bank_interest_rate": 2,
+    "tax_rate_percent": 5,
+    "tax_interval_hours": 24,
 
-    "art_tax_percent":     5,
+    "complaint_fee": 5,
+    "judge_pay": 25,
+    "lawyer_fee": 30,
 
-    "rob_cooldown_mins":   120,
-    "rob_success_chance":  40,
-    "rob_min_percent":     10,
-    "rob_max_percent":     30,
+    "art_tax_percent": 5,
+
+    "rob_cooldown_mins": 120,
+    "rob_success_chance": 40,
+    "rob_min_percent": 10,
+    "rob_max_percent": 30,
 
     "lottery_ticket_cost": 20,
-    "business_licence_cost": 200,
+    "business_licence_cost": 500,
 
-    "vote_duration_hours": 24
+    "marketplace_listing_fee": 5,
+    "sales_tax_percent": 3
 }
