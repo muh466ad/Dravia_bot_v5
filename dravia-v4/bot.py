@@ -32,10 +32,18 @@ bot        = commands.Bot(command_prefix="d!", intents=intents)
 bot.config = config
 
 COGS = [
-    "cogs.economy", "cogs.profile", "cogs.shop",
-    "cogs.art",     "cogs.court",   "cogs.gov",
-    "cogs.business","cogs.fun",     "cogs.votes",
+    "cogs.economy", 
+    "cogs.profile", 
+    "cogs.shop",
+    "cogs.art",     
+    "cogs.court",   
+    "cogs.gov",
+    "cogs.business",
+    "cogs.fun",     
+    "cogs.votes",
     "cogs.tasks",
+    "cogs.citizen_id",      # ← New
+    "cogs.marketplace",     # ← New
 ]
 
 @bot.event
