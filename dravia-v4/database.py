@@ -431,7 +431,7 @@ def get_active_votes():
 def get_vote(vote_id):
     return next((v for v in _load().get("votes", []) if v["id"] == vote_id), None)
 
-── Citizen ID System ─────────────────────────────────────
+#── Citizen ID System ─────────────────────────────────────
 def get_citizen_year():
     from datetime import datetime
     return datetime.utcnow().year
@@ -442,11 +442,16 @@ def register_citizen(user_id, full_name, address, occupation):
     if cid in db.get("citizens", {}):
         return None  # Already registered
     
-    year = get_citizen_year()
+    year = datetime.utcnow().year
     db.setdefault("citizens", {})
     db.setdefault("citizen_counter", 1)
     
     new_id = f"DR-{year}-{str(db['citizen_counter']).zfill(4)}"
+    
+    # Calculate expiry: 5 years from now
+    from datetime import timedelta
+    expires = (datetime.utcnow() + timedelta(days=5*365)).isoformat()
+    
     db["citizens"][cid] = {
         "id_number": new_id,
         "full_name": full_name,
@@ -456,7 +461,7 @@ def register_citizen(user_id, full_name, address, occupation):
         "tier": "full",
         "flags": [],
         "issued_at": _now(),
-        "expires_at": _now().replace(year=int(_now()[:4]) + 5),
+        "expires_at": expires,
         "is_lost": False
     }
     db["citizen_counter"] += 1
@@ -465,20 +470,3 @@ def register_citizen(user_id, full_name, address, occupation):
         db["users"][cid]["citizen_id"] = new_id
     _save(db)
     return new_id
-
-def get_citizen(user_id):
-    db = _load()
-    return db.get("citizens", {}).get(str(user_id), None)
-
-def update_citizen_status(user_id, status, tier=None, flags=None, admin_id=None, reason=""):
-    db = _load()
-    cid = str(user_id)
-    if cid not in db.get("citizens", {}):
-        return False
-    db["citizens"][cid]["status"] = status
-    if tier: db["citizens"][cid]["tier"] = tier
-    if flags: db["citizens"][cid]["flags"] = flags
-    _save(db)
-    return True
-
-def raw(): return _load()
