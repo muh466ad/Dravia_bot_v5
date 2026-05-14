@@ -25,8 +25,9 @@ with open("config.json", encoding="utf-8") as f:
 
 config["token"] = os.environ.get("token", config["token"])
 
-intents         = discord.Intents.default()
+intents = discord.Intents.default()
 intents.members = True
+intents.message_content = True  # ← REQUIRED for commands to work properly
 
 bot        = commands.Bot(command_prefix="d!", intents=intents)
 bot.config = config
