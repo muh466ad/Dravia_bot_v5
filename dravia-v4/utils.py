@@ -49,3 +49,16 @@ def xp_bar(xp, level):
     filled   = min(12, int((current / needed) * 12))
     bar      = "█" * filled + "░" * (12 - filled)
     return f"`{bar}` {current}/{needed}"
+async def requires_citizen_id(interaction: discord.Interaction):
+
+
+"""Blocks unregistered or suspended citizens from using government/economy commands"""
+    import database as db
+    cid = db.get_citizen(interaction.user.id)
+    if not cid:
+        await interaction.response.send_message("🚫 You must register for a Dravia ID first! Use `/register`.", ephemeral=True)
+        return False
+    if cid["status"] in ("suspended", "revoked"):
+        await interaction.response.send_message(f"🔴 Your ID is {cid['status']}. Contact government to resolve.", ephemeral=True)
+        return False
+    return True
