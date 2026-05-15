@@ -1,11 +1,11 @@
 {
-    "token":               "PASTE_YOUR_BOT_TOKEN_HERE",
-    "guild_id":            "PASTE_YOUR_SERVER_ID_HERE",
-    "admin_role_id":       "PASTE_YOUR_ADMIN_ROLE_ID_HERE",
-    "judge_role_id":       "PASTE_YOUR_JUDGE_ROLE_ID_HERE",
+    "token":               "MTUwMjI3ODQ4MjU1Njg4Mjk3NA.GrsTzm.V1m1lHwkjD697JwvGOTLTXTf2rGmxTvYcT4r_0",
+    "guild_id":            "1502609634349813902",
+    "admin_role_id":       "1502643338132717638",
+    "judge_role_id":       "1502642989984649326",
     "police_role_id":      "PASTE_YOUR_POLICE_ROLE_ID_HERE",
-    "welcome_channel_id":  "PASTE_WELCOME_CHANNEL_ID_HERE",
-    "log_channel_id":      "PASTE_LOG_CHANNEL_ID_HERE",
+    "welcome_channel_id":  "1504184991150637168",
+    "log_channel_id":      "1504184918987509861",
 
     "currency":            "Drav",
     "currency_symbol":     "Ð",
