@@ -1,0 +1,104 @@
+"""
+╔═══════════════════════════════════════════════════════════╗
+║           DRAVIA ECONOMY BOT  v5.0 ULTIMATE               ║
+║           Nation of Law and Unity                         ║
+║                                                           ║
+║  🆔 Citizen ID System                                     ║
+║  💰 Real Economy (No infinite money!)                     ║
+║  🏪 Unified Marketplace 2.0                               ║
+║  🎯 Auctions & Trading                                    ║
+║  📝 Contracts & Escrow                                    ║
+║  ⭐ Reviews & Reputation                                  ║
+║  💼 Employment & Salaries                                 ║
+╚═══════════════════════════════════════════════════════════╝
+"""
+
+import discord, json, os
+from discord.ext import commands
+
+with open("config.json", encoding="utf-8") as f:
+    config = json.load(f)
+
+config["token"] = os.environ.get("token", config["token"])
+
+intents         = discord.Intents.default()
+intents.members = True
+intents.message_content = True
+
+bot        = commands.Bot(command_prefix="d!", intents=intents)
+bot.config = config
+
+COGS = [
+    "cogs.registration",
+    "cogs.economy",
+    "cogs.marketplace",
+    "cogs.auctions",
+    "cogs.contracts",
+    "cogs.reviews",
+    "cogs.gov",
+    "cogs.profile",
+    "cogs.shop",
+    "cogs.court",
+    "cogs.fun",
+]
+
+@bot.event
+async def on_ready():
+    print(f"\n{'═'*60}")
+    print(f"  🦢  DRAVIA BOT v5.0 ULTIMATE — ONLINE")
+    print(f"  User : {bot.user}")
+    print(f"{'═'*60}\n")
+    for cog in COGS:
+        try:
+            await bot.load_extension(cog)
+            print(f"  ✅  {cog}")
+        except Exception as e:
+            print(f"  ❌  {cog}: {e}")
+    try:
+        guild  = discord.Object(id=int(config["guild_id"]))
+        synced = await bot.tree.sync(guild=guild)
+        print(f"\n  ✅  {len(synced)} slash commands synced\n")
+    except Exception as e:
+        print(f"  ❌  Sync failed: {e}\n")
+    await bot.change_presence(
+        activity=discord.Activity(
+            type=discord.ActivityType.watching,
+            name="over the Dravia economy 🦢"
+        )
+    )
+
+@bot.event
+async def on_member_join(member):
+    """Welcome new members and prompt registration"""
+    import database as db
+    db.get_user(member.id, config["starting_balance"])
+    
+    channel_id = config.get("welcome_channel_id")
+    if not channel_id: return
+    
+    channel = bot.get_channel(int(channel_id))
+    if not channel: return
+    
+    e = discord.Embed(
+        title="🦢 Welcome to the Republic of Dravia!",
+        description=(
+            f"Welcome, {member.mention}!\n\n"
+            f"**⚠️ IMPORTANT: You must complete CITIZEN REGISTRATION ⚠️**\n\n"
+            f"Use `/register` to become an official citizen.\n\n"
+            f"**Without registration, you CANNOT:**\n"
+            f"❌ Vote in elections\n"
+            f"❌ Open businesses\n"
+            f"❌ File court cases\n"
+            f"❌ Get government jobs\n"
+            f"❌ Use most economy features\n\n"
+            f"✅ Registration is **FREE** and takes 2 minutes!\n"
+            f"✅ You've been given **{config['starting_balance']} {config['currency']}** to start.\n\n"
+            f"**Register now:** `/register`"
+        ),
+        color=0xFFB300
+    )
+    e.set_thumbnail(url=member.display_avatar.url)
+    e.set_footer(text="🆔 Ministry of Interior Affairs • Republic of Dravia")
+    await channel.send(embed=e)
+
+bot.run(config["token"])
